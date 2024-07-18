@@ -16,7 +16,7 @@ const Sidebar = () => {
         </div>
         <div className="flex items-center pb-1 gap-3 pl-8 cursor-pointer">
           <img className="w-6" src={assets.search_icon} alt="search" />
-          <p className="font-bold">Search</p>
+
           {/* <input
             className="rounded-full cursor-pointer p-1  w-[84%] text-black"
             type="search"
