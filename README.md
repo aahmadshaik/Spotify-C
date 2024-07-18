@@ -1,4 +1,4 @@
-Spotify Clone
+#Spotify Clone
 This project is a Spotify clone built using React with Vite, featuring essential music player functionalities such as play, pause, next, previous, and a draggable seek bar for music playback control. It includes albums and songs, offering a frontend experience similar to Spotify.
 
 Features
