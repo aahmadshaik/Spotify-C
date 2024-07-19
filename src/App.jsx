@@ -1,30 +1,24 @@
 import { useContext, useEffect } from "react";
-import Sidebar from "./components/Sidebar";
-import Player from "./components/Player";
-import Display from "./components/Display";
-import { PlayerContext } from "./context/PlayerContext";
 
-const App = () => {
-  const { audioRef, track } = useContext(PlayerContext);
+import { SpotifyProvider } from "./context/SpotifyContext";
+import { TokenContext } from "./context/TokenContext";
+import Wrapper from "./components/Wrapper";
+import Login from "./components/Login";
 
-  // useEffect(() => {
-  //   console.log("Track object:", track);
-  // }, [track]);
+function App() {
+  const { token, setToken } = useContext(TokenContext);
 
-  // useEffect(() => {
-  //   console.log("Audio file path:", track.file);
-  // }, [track]);
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const token = new URLSearchParams(hash.substring(1)).get("access_token");
+      if (token) {
+        setToken(token);
+      }
+    }
+  }, [setToken]);
 
-  return (
-    <div className="h-screen bg-black">
-      <div className="h-[90%] flex">
-        <Sidebar />
-        <Display />
-      </div>
-      <Player />
-      <audio ref={audioRef} src={track.file} preload="auto"></audio>
-    </div>
-  );
-};
+  return <SpotifyProvider>{token ? <Wrapper /> : <Login />}</SpotifyProvider>;
+}
 
 export default App;
